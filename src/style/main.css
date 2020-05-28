@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1 h2 h3 h4 h5 h6 {
+  font-family: "Roboto", sans-serif;
+}
+
+.header-container {
+  padding: 6rem;
+  background-color: lightslategrey;
+}
+
+.header-container .header-title {
+  font-size: 3rem;
+  color: white;
+}
+
+.category-container {
+  padding: 0 6rem;
+  margin: 4rem 0;
+}
+
+.category-container .category-header-container .category-header-title {
+  padding-bottom: 1.5rem;
+  color: lightslategrey;
+  border-bottom: 1px solid lightslategrey;
+}
+
+.book-container {
+  margin: 2rem 0;
+}
+
+.addbook-container {
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  background: url("./icons/arrow-back.svg") no-repeat center center;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.footer-container {
+  background-color: steelblue;
+  padding: 3rem 0;
+  text-align: center;
+  color: white;
+}
+/*# sourceMappingURL=main.css.map */
