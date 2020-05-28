@@ -38,10 +38,33 @@ h1 h2 h3 h4 h5 h6 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
-.book-container {
+.category-container .row-books .book-container {
+  width: 30%;
   margin: 2rem 2rem 2rem 0;
+}
+
+.category-container .row-books .book-container .book-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+}
+
+.category-container .row-books .book-container .book-author {
+  font-size: 0.8rem;
+  font-weight: lighter;
+}
+
+.book {
+  text-align: center;
+}
+
+.book .book-description {
+  margin: 1rem 0;
 }
 
 .addbook-container {
@@ -51,6 +74,14 @@ h1 h2 h3 h4 h5 h6 {
   background: url("./icons/arrow-back.svg") no-repeat center center;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
           box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.bookoptions-container {
+  text-align: center;
+}
+
+.bookoptions-container .bookoptions-selector {
+  border: 0;
 }
 
 .footer-container {

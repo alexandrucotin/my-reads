@@ -2,7 +2,7 @@ import React from "react";
 import Book from "./Book";
 
 const Category = (props) => {
-  const {books} = props
+  const {books, update} = props
   return (
     <div className="category-container">
       <div className="category-header-container">
@@ -10,7 +10,7 @@ const Category = (props) => {
       </div>
       <div className="row-books">
         {books.map((book) => (
-          <Book key={book.id} title={book.title} author={book.author} />
+          <Book update={update} key={book.id} {...book} />
         ))}
       </div>
     </div>

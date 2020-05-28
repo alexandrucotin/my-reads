@@ -36,11 +36,32 @@ h1 h2 h3 h4 h5 h6 {
 
   .row-books {
     display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+
+    .book-container {
+      width: 30%;
+      margin: 2rem 2rem 2rem 0;
+
+      .book-title {
+        font-family: "Roboto", sans-serif;
+        font-size: 0.8rem;
+      }
+
+      .book-author {
+        font-size: 0.8rem;
+        font-weight: lighter;
+      }
+    }
   }
 }
 
-.book-container {
-  margin: 2rem 2rem 2rem 0;
+.book {
+  text-align: center;
+
+  .book-description {
+    margin: 1rem 0;
+  }
 }
 
 .addbook-container {
@@ -49,6 +70,13 @@ h1 h2 h3 h4 h5 h6 {
   bottom: 5%;
   background: url("./icons/arrow-back.svg") no-repeat center center;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.bookoptions-container {
+  text-align: center;
+  .bookoptions-selector {
+    border: 0;
+  }
 }
 
 .footer-container {

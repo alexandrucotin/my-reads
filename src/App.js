@@ -4,57 +4,49 @@ import Header from "./components/Header";
 import Category from "./components/Category";
 import AddBook from "./components/AddBook";
 import Footer from "./components/Footer";
+import * as BooksApi from "./BooksAPI";
 
 class App extends React.Component {
   state = {
-    books: [
-      {
-        id: 0,
-        title: "First book",
-        author: "Me",
-        description: "Hello this is the description of the first book",
-        category: "Fiction",
-        currentPosition: "Currently Reading",
-        img: "",
-      },
-      {
-        id: 1,
-        title: "Second book",
-        author: "Me",
-        description: "Hello this is the description of the second book",
-        category: "Fiction",
-        currentPosition: "Want to Read",
-        img: "",
-      },
-      {
-        id: 2,
-        title: "Third book",
-        author: "Me",
-        description: "Hello this is the description of the third book",
-        category: "Fiction",
-        currentPosition: "Currently Reading",
-        img: "",
-      },
-    ],
+    books: [],
   };
 
-  getBooks = (currentPosition) => {
+  componentDidMount() {
+    BooksApi.getAll().then((data) => {
+      this.setState(() => ({
+        books: data,
+      }));
+    });
+  }
+
+  booksCategory = (currentPosition) => {
     const books = this.state.books.filter(
-      (book) => book.currentPosition === currentPosition
+      (book) => book.shelf === currentPosition
     );
     return books;
+  };
+
+  updateBook = (book, shelf) => {
+    BooksApi.update(book, shelf);
   };
   render() {
     return (
       <div className="main-contaier">
         <Header />
         <Category
-          books={this.getBooks("Currently Reading")}
+          update={this.updateBook}
+          books={this.booksCategory("currentlyReading")}
           name="Currently Reading"
         />
         <Category
-          books={this.getBooks("Want to Read")}
+          update={this.updateBook}
+          books={this.booksCategory("wantToRead")}
           name="Want to Read"
+        />
+        <Category
+          update={this.updateBook}
+          books={this.booksCategory("read")}
+          name="Read"
         />
         <AddBook />
         <Footer />
