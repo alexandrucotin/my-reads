@@ -52,12 +52,10 @@ class App extends React.Component {
           books={this.getBooks("Currently Reading")}
           name="Currently Reading"
         />
-        {console.log("These are the books in want to read shelf", this.getBooks("Currently Reading"))}
         <Category
           books={this.getBooks("Want to Read")}
           name="Want to Read"
         />
-        <Category name="Read" /> 
         <AddBook />
         <Footer />
       </div>

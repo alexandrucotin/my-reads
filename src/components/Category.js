@@ -3,7 +3,6 @@ import Book from "./Book";
 
 const Category = (props) => {
   const {books} = props
-  console.log("Books in category:", books)
   return (
     <div className="category-container">
       <div className="category-header-container">
@@ -11,7 +10,7 @@ const Category = (props) => {
       </div>
       <div className="row-books">
         {books.map((book) => (
-          <Book key={book.id} title={book.title} author={book.title} />
+          <Book key={book.id} title={book.title} author={book.author} />
         ))}
       </div>
     </div>
