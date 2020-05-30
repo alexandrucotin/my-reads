@@ -27,7 +27,9 @@ class App extends React.Component {
   };
 
   updateBook = (book, shelf) => {
-    BooksApi.update(book, shelf);
+    BooksApi.update(book, shelf).then((data)=> {
+      console.log(data);
+    })
   };
   render() {
     return (

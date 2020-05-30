@@ -10,7 +10,7 @@ const Category = (props) => {
       </div>
       <div className="row-books">
         {books.map((book) => (
-          <Book update={update} key={book.id} {...book} />
+          <Book update={update} key={book.id} book={book} />
         ))}
       </div>
     </div>

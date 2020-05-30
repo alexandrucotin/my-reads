@@ -2,7 +2,7 @@ import React from "react";
 import BookOptions from "./BookOptions";
 
 const Book = (props) => {
-const{ id, title, authors, imageLinks, update} = props;
+const{ title, authors, imageLinks} = props.book;
   return (
     <div className="book-container">
       <div className="book">
@@ -14,7 +14,7 @@ const{ id, title, authors, imageLinks, update} = props;
           <p className="book-author">{authors}</p>
         </div>
       </div>
-      <BookOptions bookId={id} update={update} />
+      <BookOptions book={props.book} update={props.update} />
     </div>
   );
 };
