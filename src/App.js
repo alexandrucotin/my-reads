@@ -19,6 +19,11 @@ class App extends React.Component {
     });
   }
 
+  // getBookById = (id) => {
+  //   const book = this.state.books.filter((book) => book.id ===id)
+  //   return book
+  // }
+
   booksCategory = (currentPosition) => {
     const books = this.state.books.filter(
       (book) => book.shelf === currentPosition
@@ -27,9 +32,30 @@ class App extends React.Component {
   };
 
   updateBook = (book, shelf) => {
-    BooksApi.update(book, shelf).then((data)=> {
+    console.log(
+      "This is the state at the start of updateBook method:",
+      this.state.books
+    );
+    BooksApi.update(book, shelf).then((data) => {
       console.log(data);
-    })
+      const updatedBoks = this.state.books.map((book) => {
+        if (data[book.shelf].includes(book.id)) {
+          return book;
+        } else {
+          for (let [shelf, booksInShelf] of Object.entries(data)) {
+            // check if book is in shelf
+            if (data[shelf].includes(book.id)) {
+              book.shelf = shelf;
+
+              return book;
+            }
+          }
+        }
+      });
+      this.setState(() => ({
+        books: updatedBoks,
+      }));
+    });
   };
   render() {
     return (
