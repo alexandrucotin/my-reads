@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import {Link} from "react-router-dom"
 
 class AddBook extends Component {
     render() {
         return (
             <div className="addbook-container">
-                <button>add book</button>
+                <Link to="/search" >add book</Link>
             </div>
         );
     }

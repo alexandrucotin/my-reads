@@ -11,7 +11,6 @@ body {
 h1 h2 h3 h4 h5 h6 {
   font-family: "Roboto", sans-serif;
 }
-
 .header-container {
   padding: 6rem;
   background-color: lightslategrey;
@@ -33,25 +32,26 @@ h1 h2 h3 h4 h5 h6 {
       border-bottom: 1px solid lightslategrey;
     }
   }
+}
 
-  .row-books {
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
+.row-books {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 
-    .book-container {
-      width: 30%;
-      margin: 2rem 2rem 2rem 0;
+  .book-container {
+    width: 30%;
+    margin: 2rem 2rem 2rem 0;
 
-      .book-title {
-        font-family: "Roboto", sans-serif;
-        font-size: 0.8rem;
-      }
+    .book-title {
+      font-family: "Roboto", sans-serif;
+      font-size: 0.8rem;
+    }
 
-      .book-author {
-        font-size: 0.8rem;
-        font-weight: lighter;
-      }
+    .book-author {
+      font-size: 0.8rem;
+      font-weight: lighter;
     }
   }
 }
@@ -68,7 +68,7 @@ h1 h2 h3 h4 h5 h6 {
   position: fixed;
   right: 5%;
   bottom: 5%;
-  background: url("./icons/arrow-back.svg") no-repeat center center;
+  background: url("./icons/add.svg") no-repeat center center;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
@@ -84,4 +84,9 @@ h1 h2 h3 h4 h5 h6 {
   padding: 3rem 0;
   text-align: center;
   color: white;
+}
+
+.searchpage-container{
+    padding: 6rem;
+    height: 100vh;
 }
