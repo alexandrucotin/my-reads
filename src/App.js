@@ -34,35 +34,44 @@ class App extends React.Component {
         this.setState(() => ({
           searchedBooks: books,
         }));
-      }else{
-        return "There is no book found"
+      } else {
+        return "There is no book found";
       }
     });
   };
 
   updateBook = (book, shelf) => {
-    BooksApi.update(book, shelf).then((data) => {
-      const updatedBoks = this.state.books.map((book) => {
-        if (data[book.shelf].includes(book.id)) {
-          return book;
-        } else {
-          for (let shelf of Object.keys(data)) {
-            if (data[shelf].includes(book.id)) {
-              book.shelf = shelf;
-              return book;
+    if (this.state.books.includes(book)) {
+      BooksApi.update(book, shelf).then((data) => {
+        const updatedBoks = this.state.books.map((book) => {
+          if (data[book.shelf].includes(book.id)) {
+            return book;
+          } else {
+            for (let shelf of Object.keys(data)) {
+              if (data[shelf].includes(book.id)) {
+                book.shelf = shelf;
+                return book;
+              }
             }
           }
-        }
-        return null;
+          return null;
+        });
+        this.setState(() => ({
+          books: updatedBoks,
+        }));
       });
+    } else {
+      book.sheft = shelf;
+      const updatedBooks = [...this.state.books,book];
+      console.log(updatedBooks);
       this.setState(() => ({
-        books: updatedBoks,
+        books: updatedBooks,
       }));
-    });
+    }
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.state)
     return (
       <div className="main-container">
         <Header />
@@ -77,6 +86,7 @@ class App extends React.Component {
           path="/search"
           render={() => (
             <SearchBook
+              addBook={this.addBook}
               update={this.updateBook}
               searchedBooks={this.state.searchedBooks}
               booksQuery={this.searchBooks}

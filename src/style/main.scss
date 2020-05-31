@@ -66,10 +66,13 @@ h1 h2 h3 h4 h5 h6 {
 
 .addbook-container {
   position: fixed;
-  right: 5%;
-  bottom: 5%;
+  right: 2.5%;
+  bottom: 2.5%;
   background: url("./icons/add.svg") no-repeat center center;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 50%;
+  padding: 1.5rem;
+  background-color: black;
 }
 
 .bookoptions-container {
@@ -86,7 +89,24 @@ h1 h2 h3 h4 h5 h6 {
   color: white;
 }
 
-.searchpage-container{
-    padding: 6rem;
-    height: 100vh;
+.searchpage-container {
+  padding: 6rem;
+
+  .searchinput-container {
+    margin: 1rem 0;
+    .search-form {
+      width: 100%;
+      height: 3rem;
+      font-size: 1rem;
+      color: lightgrey;
+      padding: 0 1rem;
+      font-weight: lighter;
+
+      &:focus {
+        outline: none;
+        color: black;
+        font-weight: normal;
+      }
+    }
+  }
 }

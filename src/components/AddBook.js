@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import {Link} from "react-router-dom"
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class AddBook extends Component {
-    render() {
-        return (
-            <div className="addbook-container">
-                <Link to="/search" >add book</Link>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <Link to="/search">
+        <div className="addbook-container"></div>
+      </Link>
+    );
+  }
 }
 
 export default AddBook;

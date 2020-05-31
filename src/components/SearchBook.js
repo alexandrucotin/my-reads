@@ -4,14 +4,14 @@ import SearchInput from "./SearchInput";
 
 class SearchBook extends Component {
   render() {
-    const { update, booksQuery, searchedBooks } = this.props;
+    const { update, booksQuery, searchedBooks, addBook } = this.props;
     return (
       <div className="searchpage-container">
         Search your book!
         <SearchInput booksQuery={booksQuery} />
         <div className="row-books">
           {searchedBooks.map((book) => (
-            <Book update={update} key={book.id} book={book} />
+            <Book addBook={addBook} update={update} key={book.id} book={book} />
           ))}
         </div>
       </div>

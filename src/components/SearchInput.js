@@ -22,7 +22,6 @@ class SearchInput extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className="searchinput-container">
         <input
