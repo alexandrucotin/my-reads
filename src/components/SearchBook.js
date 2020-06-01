@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Book from "./Book";
 import SearchInput from "./SearchInput";
+import ButtonLink from "./ButtonLink";
 
 class SearchBook extends Component {
   render() {
@@ -14,6 +15,7 @@ class SearchBook extends Component {
             <Book addBook={addBook} update={update} key={book.id} book={book} />
           ))}
         </div>
+        <ButtonLink path="/" class="backToHome-container" />
       </div>
     );
   }

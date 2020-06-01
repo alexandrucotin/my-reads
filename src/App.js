@@ -10,7 +10,7 @@ import { Route } from "react-router-dom";
 class App extends React.Component {
   state = {
     books: [],
-    searchedBooks: [],
+    searchedBooks: []
   };
 
   componentDidMount() {
@@ -29,7 +29,7 @@ class App extends React.Component {
   };
 
   searchBooks = (query) => {
-    if (query === "" || query===" ") {
+    if (query === "" || query === " ") {
       this.setState(() => ({
         searchedBooks: [],
       }));
@@ -60,24 +60,24 @@ class App extends React.Component {
               }
             }
           }
-          return null;
         });
         this.setState(() => ({
           books: updatedBoks,
         }));
       });
     } else {
-      book.sheft = shelf;
-      const updatedBooks = [...this.state.books, book];
-      console.log(updatedBooks);
-      this.setState(() => ({
-        books: updatedBooks,
-      }));
+      BooksApi.update(book, shelf).then(() => {
+        const updatedBooks = [...this.state.books, book];
+        console.log("This is the updatedBooks in update method: ", updatedBooks)
+        this.setState(() => ({
+          books: updatedBooks
+        }));
+      });
     }
   };
 
   render() {
-    console.log(this.state);
+    console.log("This is the state in render method: ", this.state)
     return (
       <div className="main-container">
         <Header />

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import {} from "react-router-dom";
 class BookOptions extends Component {
   state = {
     value: "select value",
@@ -8,10 +8,6 @@ class BookOptions extends Component {
   update = () => {
     const { update, book } = this.props;
     update(book, this.state.value);
-  };
-
-  redirectToHome = () => {
-    return <Redirect from={window.location.pathname} to="/" />;
   };
 
   handleSelection = (event) => {
@@ -25,7 +21,6 @@ class BookOptions extends Component {
       this.setState({ value: selectedShelf }, () => {
         this.update();
       });
-      this.redirectToHome();
     }
   };
 

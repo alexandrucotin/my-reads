@@ -1,6 +1,6 @@
 import React from "react";
 import Category from "./Category";
-import AddBook from "./AddBook";
+import ButtonLink from "./ButtonLink";
 
 class Home extends React.Component {
   render() {
@@ -22,7 +22,7 @@ class Home extends React.Component {
           books={category("read")}
           name="Read"
         />
-        <AddBook />
+        <ButtonLink path={"/search"} class="addbook-container" />
       </div>
     );
   }
