@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {} from "react-router-dom";
 class BookOptions extends Component {
   state = {
-    value: "select value",
+    value: this.props.book.shelf || "select value",
   };
 
   update = () => {
@@ -25,6 +25,7 @@ class BookOptions extends Component {
   };
 
   render() {
+    // console.log(this.state)
     return (
       <div className="bookoptions-container">
         <select
@@ -32,7 +33,7 @@ class BookOptions extends Component {
           value={this.state.value}
           className="bookoptions-selector"
         >
-          <option value="Move to...">Move to...</option>
+          <option  value="Move to...">Move to...</option>
           <option value="currentlyReading">Currently reading</option>
           <option value="wantToRead">Want to read</option>
           <option value="read">Read</option>

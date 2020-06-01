@@ -10,7 +10,7 @@ import { Route } from "react-router-dom";
 class App extends React.Component {
   state = {
     books: [],
-    searchedBooks: []
+    searchedBooks: [],
   };
 
   componentDidMount() {
@@ -19,6 +19,12 @@ class App extends React.Component {
         books: data,
       }));
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState !== this.state.books) {
+      console.log("booksfo state has changed.");
+    }
   }
 
   booksCategory = (currentPosition) => {
@@ -36,6 +42,12 @@ class App extends React.Component {
     } else {
       BooksApi.search(query, 10).then((books) => {
         if (books) {
+          const {books: currentStateBooks} = this.state;
+          const booksIds = currentStateBooks.reduce((result, book) => {
+            result[book.id] = book.shelf;
+            return result;
+          },{});
+          console.log("This is booksIDS", booksIds);
           this.setState(() => ({
             searchedBooks: books,
           }));
@@ -67,17 +79,21 @@ class App extends React.Component {
       });
     } else {
       BooksApi.update(book, shelf).then(() => {
+        book.shelf = shelf;
         const updatedBooks = [...this.state.books, book];
-        console.log("This is the updatedBooks in update method: ", updatedBooks)
+        console.log(
+          "This is the updatedBooks in update method: ",
+          updatedBooks
+        );
         this.setState(() => ({
-          books: updatedBooks
+          books: updatedBooks,
         }));
       });
     }
   };
 
   render() {
-    console.log("This is the state in render method: ", this.state)
+    console.log("This is the state in render method: ", this.state);
     return (
       <div className="main-container">
         <Header />

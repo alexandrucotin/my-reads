@@ -2,7 +2,7 @@ import React from "react";
 import BookOptions from "./BookOptions";
 
 const Book = (props) => {
-const{ title, authors, imageLinks} = props.book;
+const{ title, authors, imageLinks } = props.book;
   return (
     <div className="book-container">
       <div className="book">
