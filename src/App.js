@@ -6,11 +6,14 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import * as BooksApi from "./BooksAPI";
 import { Route } from "react-router-dom";
+import { searchTerms } from "./components/SearchTerms";
+import QueryValidator from "./components/QueryValidator";
 
 class App extends React.Component {
   state = {
     books: [],
     searchedBooks: [],
+    searchTerms: searchTerms,
   };
 
   componentDidMount() {
@@ -21,12 +24,6 @@ class App extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState !== this.state.books) {
-      console.log("booksfo state has changed.");
-    }
-  }
-
   booksCategory = (currentPosition) => {
     const books = this.state.books.filter(
       (book) => book.shelf === currentPosition
@@ -35,19 +32,26 @@ class App extends React.Component {
   };
 
   searchBooks = (query) => {
-    if (query === "" || query === " ") {
+    if (query === "" || query === "^\\s+$") {
       this.setState(() => ({
         searchedBooks: [],
       }));
+    } else if (!this.state.searchTerms.includes(query)) {
+      alert("The search you want to perform is invalid!")
     } else {
       BooksApi.search(query, 10).then((books) => {
         if (books) {
-          const {books: currentStateBooks} = this.state;
+          const { books: currentStateBooks } = this.state;
           const booksIds = currentStateBooks.reduce((result, book) => {
             result[book.id] = book.shelf;
             return result;
-          },{});
+          }, {});
           console.log("This is booksIDS", booksIds);
+          for (let book of books) {
+            if (book.id in booksIds) {
+              book.shelf = booksIds[book.id];
+            }
+          }
           this.setState(() => ({
             searchedBooks: books,
           }));
@@ -81,10 +85,6 @@ class App extends React.Component {
       BooksApi.update(book, shelf).then(() => {
         book.shelf = shelf;
         const updatedBooks = [...this.state.books, book];
-        console.log(
-          "This is the updatedBooks in update method: ",
-          updatedBooks
-        );
         this.setState(() => ({
           books: updatedBooks,
         }));
@@ -93,7 +93,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log("This is the state in render method: ", this.state);
     return (
       <div className="main-container">
         <Header />
@@ -115,6 +114,7 @@ class App extends React.Component {
             />
           )}
         />
+        <Route exact path="/search/404" component={QueryValidator} />
         <Footer />
       </div>
     );

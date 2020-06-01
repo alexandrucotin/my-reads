@@ -130,4 +130,8 @@ h1 h2 h3 h4 h5 h6 {
   color: black;
   font-weight: normal;
 }
+
+.book-image {
+  max-width: 100%;
+}
 /*# sourceMappingURL=main.css.map */
