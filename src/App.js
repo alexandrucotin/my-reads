@@ -29,15 +29,21 @@ class App extends React.Component {
   };
 
   searchBooks = (query) => {
-    BooksApi.search(query, 10).then((books) => {
-      if (books) {
-        this.setState(() => ({
-          searchedBooks: books,
-        }));
-      } else {
-        return "There is no book found";
-      }
-    });
+    if (query === "" || query===" ") {
+      this.setState(() => ({
+        searchedBooks: [],
+      }));
+    } else {
+      BooksApi.search(query, 10).then((books) => {
+        if (books) {
+          this.setState(() => ({
+            searchedBooks: books,
+          }));
+        } else {
+          return "There is no book found";
+        }
+      });
+    }
   };
 
   updateBook = (book, shelf) => {
@@ -62,7 +68,7 @@ class App extends React.Component {
       });
     } else {
       book.sheft = shelf;
-      const updatedBooks = [...this.state.books,book];
+      const updatedBooks = [...this.state.books, book];
       console.log(updatedBooks);
       this.setState(() => ({
         books: updatedBooks,
@@ -71,7 +77,7 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state)
+    console.log(this.state);
     return (
       <div className="main-container">
         <Header />
