@@ -6,14 +6,12 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import * as BooksApi from "./BooksAPI";
 import { Route } from "react-router-dom";
-import { searchTerms } from "./components/SearchTerms";
-import QueryValidator from "./components/QueryValidator";
 
 class App extends React.Component {
   state = {
     books: [],
     searchedBooks: [],
-    searchTerms: searchTerms,
+    error: false,
   };
 
   componentDidMount() {
@@ -31,32 +29,39 @@ class App extends React.Component {
     return books;
   };
 
+  handleError = (state) =>{
+    this.setState(()=>({
+      error: state
+    }))
+  }
   searchBooks = (query) => {
     if (query === "" || query === "^\\s+$") {
       this.setState(() => ({
+        error: false,
         searchedBooks: [],
       }));
-    } else if (!this.state.searchTerms.includes(query)) {
-      alert("The search you want to perform is invalid!")
     } else {
-      BooksApi.search(query, 10).then((books) => {
-        if (books) {
+      BooksApi.search(query).then((books) => {
+        if (!books.error) {
           const { books: currentStateBooks } = this.state;
           const booksIds = currentStateBooks.reduce((result, book) => {
             result[book.id] = book.shelf;
             return result;
           }, {});
-          console.log("This is booksIDS", booksIds);
           for (let book of books) {
             if (book.id in booksIds) {
               book.shelf = booksIds[book.id];
             }
           }
           this.setState(() => ({
+            error: false,
             searchedBooks: books,
           }));
         } else {
-          return "There is no book found";
+          this.setState(() => ({
+            error: true,
+          }));
+          return "error";
         }
       });
     }
@@ -107,6 +112,7 @@ class App extends React.Component {
           path="/search"
           render={() => (
             <SearchBook
+              error={this.state.error}
               addBook={this.addBook}
               update={this.updateBook}
               searchedBooks={this.state.searchedBooks}
@@ -114,7 +120,6 @@ class App extends React.Component {
             />
           )}
         />
-        <Route exact path="/search/404" component={QueryValidator} />
         <Footer />
       </div>
     );
