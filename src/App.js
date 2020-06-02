@@ -29,11 +29,11 @@ class App extends React.Component {
     return books;
   };
 
-  handleError = (state) =>{
-    this.setState(()=>({
-      error: state
-    }))
-  }
+  handleError = (state) => {
+    this.setState(() => ({
+      error: state,
+    }));
+  };
   searchBooks = (query) => {
     if (query === "" || query === "^\\s+$") {
       this.setState(() => ({
@@ -113,7 +113,6 @@ class App extends React.Component {
           render={() => (
             <SearchBook
               error={this.state.error}
-              addBook={this.addBook}
               update={this.updateBook}
               searchedBooks={this.state.searchedBooks}
               booksQuery={this.searchBooks}

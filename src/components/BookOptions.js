@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 
 class BookOptions extends Component {
   state = {
@@ -33,7 +33,9 @@ class BookOptions extends Component {
           value={this.state.value}
           className="bookoptions-selector"
         >
-          <option value="Move to...">Move to...</option>
+          <option disabled value="Move to...">
+            Move to...
+          </option>
           <option value="currentlyReading">Currently reading</option>
           <option value="wantToRead">Want to read</option>
           <option value="read">Read</option>
@@ -43,5 +45,10 @@ class BookOptions extends Component {
     );
   }
 }
+
+BookOptions.propTypes = {
+  book: PropTypes.object.isRequired,
+  update: PropTypes.func.isRequired,
+};
 
 export default BookOptions;

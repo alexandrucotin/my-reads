@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class SearchInput extends Component {
   state = {
@@ -35,5 +36,7 @@ class SearchInput extends Component {
     );
   }
 }
-
+SearchInput.propTypes = {
+  booksQuery: PropTypes.func.isRequired,
+};
 export default SearchInput;

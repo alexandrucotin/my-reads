@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import Book from "./Book";
 import SearchInput from "./SearchInput";
 import ButtonLink from "./ButtonLink";
+import PropTypes from "prop-types";
 
 class SearchBook extends Component {
   render() {
-    const { update, booksQuery, searchedBooks, addBook, error } = this.props;
+    const { update, booksQuery, searchedBooks, error } = this.props;
     if (error) {
       return (
         <div className="searchpage-container">
@@ -24,12 +25,7 @@ class SearchBook extends Component {
           <SearchInput booksQuery={booksQuery} />
           <div className="row-books">
             {searchedBooks.map((book) => (
-              <Book
-                addBook={addBook}
-                update={update}
-                key={book.id}
-                book={book}
-              />
+              <Book update={update} key={book.id} book={book} />
             ))}
           </div>
           <ButtonLink path="/" class="backToHome-container" />
@@ -38,5 +34,12 @@ class SearchBook extends Component {
     }
   }
 }
+
+SearchBook.propTypes = {
+  error: PropTypes.bool.isRequired,
+  update: PropTypes.func.isRequired,
+  searchedBooks: PropTypes.array.isRequired,
+  booksQuery: PropTypes.func.isRequired,
+};
 
 export default SearchBook;
