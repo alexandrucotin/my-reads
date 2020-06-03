@@ -20,3 +20,5 @@ After that just start the react app by typing the follow command in your termina
 ```bash
 npm start
 ```
+
+The server will run on localhost port 3000 and you can now use the app!
